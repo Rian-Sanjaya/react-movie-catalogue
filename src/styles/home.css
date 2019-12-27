@@ -4,10 +4,28 @@
 }
 
 .hero-image {
-  background: url('/images/starwars9.jpg');
+  background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url('/images/starwars9.jpg');
   height: 438px;
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
   position: relative;
+}
+
+.hero-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: #fff;
+}
+
+.hero-title {
+  font-size: 2.9rem;
+  font-weight: 550;
+}
+
+.hero-desc {
+  font-size: 1.4rem;
 }
