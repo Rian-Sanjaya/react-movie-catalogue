@@ -1,0 +1,86 @@
+.nav-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  padding: 30px 20px;
+  overflow: hidden;
+  background: #031C24;
+  position: fixed;
+  top: 0;
+  z-index: 99;
+  width: 100%;
+  transition: 0.4s;
+}
+
+.nav-logo {
+  font-size: 1.5rem;
+  font-weight: 550;
+  margin-right: 30px;
+  color: #00E571;
+  transition: 0.4s;
+}
+
+.nav-logo.shrink {
+  font-size: 1rem;
+}
+
+.nav-menu {
+  flex: 1;
+  /* display: flex;
+  justify-content: flex-end; */
+}
+
+.nav-menu ul {
+  display: flex;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  height: 100%
+}
+
+.nav-menu ul li {
+  /* padding-top: 20px; */
+  margin-right: 20px;
+  position: relative;
+  top: 20px;
+}
+
+.nav-menu.shrink ul li {
+  /* padding-top: 0; */
+  position: relative;
+  top: 0;
+}
+
+.nav-menu ul li a {
+  text-decoration: none;
+  color: #fff;
+  display: block;
+  height: 100%;
+}
+
+.nav-menu ul li>a {
+  text-transform: uppercase;
+}
+
+.movies-submenu {
+  display: none;
+  position: absolute;
+  top: 28px;
+  left: 0;
+  width: 355px;
+  height: 25px;
+  z-index: 1;
+}
+
+.nav-menu ul li .movies-submenu a {
+  display: inline-block;
+  margin-right: 15px;
+}
+
+.nav-menu ul li .movies-submenu a:hover {
+  color: #748C91;
+}
+
+.nav-menu ul li:hover .movies-submenu {
+  display: block;
+}
