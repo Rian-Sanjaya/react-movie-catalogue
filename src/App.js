@@ -6,13 +6,25 @@ import './styles/app.css'
 import './styles/navigation.css'
 
 class App extends React.Component {
+  state = {
+    navShrink: false,
+  }
+
+  handleNavShrink(val) {
+    this.setState({
+      navShrink: val
+    })
+  }
+
   render() {
+    const { navShrink } = this.state
+
     return (
       <div className="main-wrapper">
         <Router>
-          <Navigation />
+          <Navigation navShrink={navShrink} onHandleNavShrink={(val) => this.handleNavShrink(val)} />
           <Switch>
-            <Home />
+            <Home navShrink={navShrink} />
           </Switch>
         </Router>
       </div>
