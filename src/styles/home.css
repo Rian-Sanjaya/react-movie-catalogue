@@ -1,6 +1,6 @@
 .hero-container {
   margin-top: 110px;
-  height: 1000px;
+  /* height: 1000px; */
 }
 
 .hero-image {
@@ -28,4 +28,46 @@
 
 .hero-desc {
   font-size: 1.4rem;
+}
+
+.slider1-container {
+  width: 70%;
+  margin: 0 auto;
+  padding: 80px 0 0;
+}
+
+.slider1-container.last {
+  padding-bottom: 80px;
+}
+
+.carousel-container {
+  height: 258px;
+}
+
+.new-movies {
+  margin-top: 0;
+  font-size: 1.3rem;
+  font-weight: 500;
+}
+
+.slider-link {
+  text-decoration: none;
+  color: #000
+}
+
+.footer {
+  display: flex;
+  background: #031C24;
+  padding: 0 20px;
+}
+
+.footer-title {
+  font-size: 1rem;
+  font-weight: 550;
+  margin-right: 30px;
+  color: #00E571;
+}
+
+.footer-desc {
+  color: #fff;
 }
