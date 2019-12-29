@@ -1,7 +1,9 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import axios from 'axios'
 import Carousel from "react-multi-carousel";
-import { makeStyles } from '@material-ui/core/styles'
+import PropTypes from 'prop-types'
+import { withStyles } from '@material-ui/core/styles'
 import Card from '@material-ui/core/Card'
 import CardActionArea from '@material-ui/core/CardActions'
 // import CardActions from '@material-ui/core/CardActions';
@@ -12,157 +14,176 @@ import Typography from '@material-ui/core/Typography';
 import "react-multi-carousel/lib/styles.css";
 import '../styles/home.css'
 
-const useStyles = makeStyles({
+const styles = theme => ({
   cont: {
     flexDirection: 'column',
     padding: 0,
   },
   card: {
     margin: "0 10px",
-    height: 250,
+    height: 290,
     boxShadow: '4px 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
   },
   media: {
-    height: 160,
+    height: 200,
     width: '100%',
+    backgroundSize: 'contain',
   },
   typo: {
     fontSize: '0.8rem',
   }
 })
 
-function Home(props) {
-  const classes = useStyles()
-  
-  const { navShrink } = props
-  const responsive = {
-    superLargeDesktop: {
-      // the naming can be any, depends on you.
-      breakpoint: { max: 4000, min: 3000 },
-      items: 5,
-    },
-    desktop: {
-      breakpoint: { max: 3000, min: 1024 },
-      items: 3,
-    },
-    tablet: {
-      breakpoint: { max: 1024, min: 464 },
-      items: 2,
-    },
-    mobile: {
-      breakpoint: { max: 464, min: 0 },
-      items: 1,
-    },
-  };
+class Home extends React.Component {
+  constructor(props) {
+    super(props)
 
-  const slider1 = [
-    {
-      image: "/images/starwars9-w500.jpg",
-      imgTitle: "Star Wars: The Rise of Skywalker",
-      title: "Star Wars: The Rise of Skywalker",
-    },
-    {
-      image: "/images/ipman4.jpg",
-      imgTitle: "Ip Man 4: The Finale",
-      title: "Ip Man 4: The Finale",
-    },
-    {
-      image: "/images/jumanji.jpg",
-      imgTitle: "Jumanji: The Next Level",
-      title: "Jumanji: The Next Level",
-    },
-    {
-      image: "/images/frozen2.jpg",
-      imgTitle: "Frozen II",
-      title: "Frozen II",
-    },
-    {
-      image: "/images/zombieland2.jpg",
-      imgTitle: "Zombieland: Double Tap",
-      title: "Zombieland: Double Tap",
-    },
-  ]
+    this.state = {
+      newMovies: [],
+      newTvShows: [],
+    }
 
-  return (
-    <div className="home-container">
-      <div className={navShrink ? "hero-container shrink" : "hero-container"}>
-        <div className="hero-image">
-          <div className="hero-content">
-            <div className="hero-title">Movie Catalogue</div>
-            <div className="hero-desc">Your Movies and TV Shows Info</div>
+    this.imageEp = 'https://image.tmdb.org/t/p/w185'
+  }
+
+  componentDidMount() {
+    axios.get(`https://api.themoviedb.org/3/discover/movie?api_key=e4621b68dcd1fa1de4a66cfd0664dc28&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1`)
+    .then( res => {
+      const results = res.data.results
+      if (results.length > 0) {
+        this.setState({
+          newMovies: results
+        })
+      }
+    })
+    .catch( err => {
+      console.error(err)
+    })
+
+    axios.get(`https://api.themoviedb.org/3/discover/tv?api_key=e4621b68dcd1fa1de4a66cfd0664dc28&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1`)
+    .then( res => {
+      const results = res.data.results
+      if (results.length > 0) {
+        this.setState({
+          newTvShows: results
+        })
+      }
+    })
+    .catch( err => {
+      console.error(err)
+    })
+  }
+
+  render() {
+    const { navShrink, classes } = this.props
+    const { newMovies, newTvShows } = this.state
+
+    const responsive = {
+      superLargeDesktop: {
+        // the naming can be any, depends on you.
+        breakpoint: { max: 4000, min: 3000 },
+        items: 5,
+      },
+      desktop: {
+        breakpoint: { max: 3000, min: 1024 },
+        items: 3,
+      },
+      tablet: {
+        breakpoint: { max: 1024, min: 464 },
+        items: 2,
+      },
+      mobile: {
+        breakpoint: { max: 464, min: 0 },
+        items: 1,
+      },
+    };
+
+    return (
+      <div className="home-container">
+        <div className={navShrink ? "hero-container shrink" : "hero-container"}>
+          <div className="hero-image">
+            <div className="hero-content">
+              <div className="hero-title">Movie Catalogue</div>
+              <div className="hero-desc">Your Movies and TV Shows Info</div>
+            </div>
           </div>
         </div>
+        <div className="slider1-container">
+          <p className="new-movies">New Movies</p>
+          <Carousel 
+            responsive={responsive} 
+            className="carousel-container" 
+            containerClass="container-with-dots"
+            sliderClass="slider-class"
+            itemClass="item-class"
+            dotListClass="dot-list-clas"
+          >
+            {
+              newMovies.length > 0 &&
+              newMovies.map( (movie, idx) => {
+                return (
+                  <Card key={movie.id} className={classes.card}>
+                    <CardActionArea className={classes.cont}>
+                      <CardMedia
+                        className={classes.media}
+                        image={`${this.imageEp}${movie.poster_path}`}
+                        title={movie.title}
+                      />
+                      <CardContent>
+                        <Typography className={classes.typo}>
+                          <Link to="/" className="slider-link">{movie.title}</Link>
+                        </Typography>
+                      </CardContent>
+                    </CardActionArea>
+                  </Card>
+                )
+              })
+            }
+          </Carousel>
+        </div>
+        <div className="slider1-container last">
+          <p className="new-movies">New TV Shows</p>
+          <Carousel responsive={responsive} className="carousel-container" >
+            {
+              newTvShows.length > 0 &&
+              newTvShows.map( (movie, idx) => {
+                return (
+                  <Card key={movie.id} className={classes.card}>
+                    <CardActionArea className={classes.cont}>
+                      <CardMedia
+                        className={classes.media}
+                        image={`${this.imageEp}${movie.poster_path}`}
+                        title={movie.name}
+                      />
+                      <CardContent>
+                        <Typography className={classes.typo}>
+                          <Link to="/" className="slider-link">{movie.name}</Link>
+                        </Typography>
+                      </CardContent>
+                    </CardActionArea>
+                  </Card>
+                )
+              })
+            }
+          </Carousel>
+        </div>
+        <div className="footer">
+          <p className="footer-title">Movie<br/>Catalogue</p>
+          <p className="footer-desc">API from&nbsp;&nbsp;&nbsp;
+            <a className="slider-link" href="https://www.themoviedb.org/" target="_blank" 
+            rel="noopener noreferrer">
+              <img src="/images/themoviedb.svg" alt="the movie db logo" 
+              width={50} style={{ verticalAlign: 'middle' }} />
+            </a>
+          </p>
+        </div>
       </div>
-      <div className="slider1-container">
-        <p className="new-movies">New Movies</p>
-        <Carousel 
-          responsive={responsive} 
-          className="carousel-container" 
-          containerClass="container-with-dots"
-          sliderClass="slider-class"
-          itemClass="item-class"
-          dotListClass="dot-list-clas"
-        >
-          {
-            slider1.map( (item, idx) => {
-              return (
-                <Card key={idx} className={classes.card}>
-                  <CardActionArea className={classes.cont}>
-                    <CardMedia
-                      className={classes.media}
-                      image={item.image}
-                      title={item.imgTitle}
-                    />
-                    <CardContent>
-                      <Typography className={classes.typo}>
-                        <Link to="/" className="slider-link">{item.title}</Link>
-                      </Typography>
-                    </CardContent>
-                  </CardActionArea>
-                </Card>
-              )
-            })
-          }
-        </Carousel>
-      </div>
-      <div className="slider1-container last">
-        <p className="new-movies">New TV Shows</p>
-        <Carousel responsive={responsive} className="carousel-container" >
-          {
-            slider1.map( (item, idx) => {
-              return (
-                <Card key={idx} className={classes.card}>
-                  <CardActionArea className={classes.cont}>
-                    <CardMedia
-                      className={classes.media}
-                      image={item.image}
-                      title={item.imgTitle}
-                    />
-                    <CardContent>
-                      <Typography className={classes.typo}>
-                        <Link to="/" className="slider-link">{item.title}</Link>
-                      </Typography>
-                    </CardContent>
-                  </CardActionArea>
-                </Card>
-              )
-            })
-          }
-        </Carousel>
-      </div>
-      <div className="footer">
-        <p className="footer-title">Movie<br/>Catalogue</p>
-        <p className="footer-desc">API from&nbsp;&nbsp;&nbsp;
-          <a className="slider-link" href="https://www.themoviedb.org/" target="_blank" 
-          rel="noopener noreferrer">
-            <img src="/images/themoviedb.svg" alt="the movie db logo" 
-            width={50} style={{ verticalAlign: 'middle' }} />
-          </a>
-        </p>
-      </div>
-    </div>
-  )
-
+    )
+  }
 }
 
-export default Home
+Home.propTypes = {
+  classes: PropTypes.object.isRequired
+}
+
+export default withStyles(styles)(Home)
