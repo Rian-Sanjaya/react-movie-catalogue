@@ -21,13 +21,13 @@ const styles = theme => ({
   },
   card: {
     margin: "0 10px",
-    height: 290,
+    height: 445,
     boxShadow: '4px 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
   },
   media: {
-    height: 200,
+    height: 365,
     width: '100%',
-    backgroundSize: 'contain',
+    backgroundSize: 'cover',
   },
   typo: {
     fontSize: '0.8rem',
@@ -78,6 +78,25 @@ class Home extends React.Component {
     const { navShrink, classes } = this.props
     const { newMovies, newTvShows } = this.state
 
+    // const responsive = {
+    //   superLargeDesktop: {
+    //     // the naming can be any, depends on you.
+    //     breakpoint: { max: 4000, min: 3000 },
+    //     items: 5,
+    //   },
+    //   desktop: {
+    //     breakpoint: { max: 3000, min: 1110 },
+    //     items: 3,
+    //   },
+    //   tablet: {
+    //     breakpoint: { max: 1110, min: 555 },
+    //     items: 2,
+    //   },
+    //   mobile: {
+    //     breakpoint: { max: 555, min: 0 },
+    //     items: 1,
+    //   },
+    // };
     const responsive = {
       superLargeDesktop: {
         // the naming can be any, depends on you.
@@ -85,15 +104,15 @@ class Home extends React.Component {
         items: 5,
       },
       desktop: {
-        breakpoint: { max: 3000, min: 1024 },
-        items: 3,
+        breakpoint: { max: 3000, min: 1100 },
+        items: 4,
       },
       tablet: {
-        breakpoint: { max: 1024, min: 464 },
+        breakpoint: { max: 1100, min: 550 },
         items: 2,
       },
       mobile: {
-        breakpoint: { max: 464, min: 0 },
+        breakpoint: { max: 550, min: 0 },
         items: 1,
       },
     };
@@ -117,6 +136,9 @@ class Home extends React.Component {
             sliderClass="slider-class"
             itemClass="item-class"
             dotListClass="dot-list-clas"
+            showDots
+            autoPlay
+            infinite
           >
             {
               newMovies.length > 0 &&
@@ -143,7 +165,13 @@ class Home extends React.Component {
         </div>
         <div className="slider1-container last">
           <p className="new-movies">New TV Shows</p>
-          <Carousel responsive={responsive} className="carousel-container" >
+          <Carousel 
+            responsive={responsive} 
+            className="carousel-container" 
+            showDots
+            autoPlay
+            infinite
+          >
             {
               newTvShows.length > 0 &&
               newTvShows.map( (movie, idx) => {

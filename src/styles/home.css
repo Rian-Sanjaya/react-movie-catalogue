@@ -31,9 +31,21 @@
 }
 
 .slider1-container {
-  width: 70%;
+  width: 1100px;
   margin: 0 auto;
   padding: 80px 0 0;
+}
+
+@media screen and (max-width: 1100px) {
+  .slider1-container {
+    width: 550px;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .slider1-container {
+    width: 275px;
+  }
 }
 
 .slider1-container.last {
@@ -41,7 +53,7 @@
 }
 
 .carousel-container {
-  height: 296px;
+  height: 499px;
 }
 
 .new-movies {
@@ -53,6 +65,10 @@
 .slider-link {
   text-decoration: none;
   color: #000
+}
+
+.slider-class {
+  height: 460px;
 }
 
 .footer {
@@ -70,4 +86,8 @@
 
 .footer-desc {
   color: #fff;
+}
+
+.item-class {
+  display: block;
 }
