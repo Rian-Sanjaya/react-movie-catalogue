@@ -14,14 +14,19 @@ class Navigation extends React.Component {
   }
 
   handleScroll = (e) => {
-    const { onHandleNavShrink } = this.props
+    const { navShrink, onHandleNavShrink } = this.props
 
     if (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
-      this.nav.current.style.padding = "15px 20px"
-      onHandleNavShrink(true)
+      if (navShrink === false) {
+        this.nav.current.style.padding = "15px 20px"
+        onHandleNavShrink(true)
+      }
+
     } else {
-      this.nav.current.style.padding = "20px 20px"
-      onHandleNavShrink(false)
+      if (navShrink === true) {
+        this.nav.current.style.padding = "20px 20px"
+        onHandleNavShrink(false)
+      }
     }
   }
 
@@ -37,9 +42,9 @@ class Navigation extends React.Component {
         <div className={navShrink ? "nav-menu shrink" : "nav-menu"}>
           <ul>
             <li>
-              <Link to="/">Movies</Link>
+              <Link to="/movie/popular">Movies</Link>
               <div className="movies-submenu">
-                <Link to="/">Popular</Link>
+                <Link to="/movie/popular">Popular</Link>
                 <Link to="/">Top Rated</Link>
                 <Link to="/">Upcoming</Link>
                 <Link to="/">Now Playing</Link>
