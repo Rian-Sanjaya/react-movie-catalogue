@@ -1,6 +1,5 @@
-.hero-container {
-  margin-top: 110px;
-  /* height: 1000px; */
+.home-container {
+  margin-top: 158px;
 }
 
 .hero-image {
@@ -71,7 +70,7 @@
   height: 460px;
 }
 
-.footer {
+/* .footer {
   display: flex;
   background: #031C24;
   padding: 0 20px;
@@ -90,4 +89,4 @@
 
 .item-class {
   display: block;
-}
+} */

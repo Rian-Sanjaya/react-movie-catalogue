@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import Navigation from './components/Navigation'
+import Footer from './components/Footer'
 import Home from './components/Home'
 import MoviePopular from './components/MoviePopular'
 import './styles/app.css'
@@ -28,6 +29,7 @@ class App extends React.Component {
             <Route exact path="/" render={(props) => <Home {...props} navShrink={navShrink} />} />
             <Route path="/movie/popular" component={MoviePopular} />
           </Switch>
+          <Footer />
         </Router>
       </div>
     );

@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import SearchBar from '../components/SearchBar'
 
 class Navigation extends React.Component {
   nav = React.createRef()
@@ -34,10 +35,13 @@ class Navigation extends React.Component {
     const { navShrink } = this.props
 
     return (
+      <div className="nav-wrapper">
       <div ref={this.nav} className="nav-container">
         <div className={navShrink ? "nav-logo shrink" : "nav-logo"}>
-          Movie<br/>
-          Catalogue
+          <Link to='/'>
+            Movie<br/>
+            Catalogue
+          </Link>
         </div>
         <div className={navShrink ? "nav-menu shrink" : "nav-menu"}>
           <ul>
@@ -62,6 +66,8 @@ class Navigation extends React.Component {
             <li><Link to="/">People</Link></li>
           </ul>
         </div>
+      </div>
+      <SearchBar />
       </div>
     )
   }

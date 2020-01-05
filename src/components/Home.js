@@ -195,7 +195,7 @@ class Home extends React.Component {
             }
           </Carousel>
         </div>
-        <div className="footer">
+        {/* <div className="footer">
           <p className="footer-title">Movie<br/>Catalogue</p>
           <p className="footer-desc">API from&nbsp;&nbsp;&nbsp;
             <a className="slider-link" href="https://www.themoviedb.org/" target="_blank" 
@@ -204,7 +204,7 @@ class Home extends React.Component {
               width={50} style={{ verticalAlign: 'middle' }} />
             </a>
           </p>
-        </div>
+        </div> */}
       </div>
     )
   }

@@ -1,6 +1,6 @@
 import React from 'react'
 import axios from 'axios'
-import '../styles/moviePopular.css'
+import MovieList from './MovieList'
 import Pagination from './Pagination'
 
 class MoviePopular extends React.Component {
@@ -12,7 +12,6 @@ class MoviePopular extends React.Component {
       currentPage: null,
       totalPages: null,
     }
-    this.imageEp = 'https://image.tmdb.org/t/p/w185'
   }
 
   componentDidMount() {
@@ -59,29 +58,8 @@ class MoviePopular extends React.Component {
     return (
       <div className="movie-popular-container">
         <h2>Popular Movies</h2>
-        <div className="movie-popular-list">
-          {
-            dataMovies.length > 0 && 
-            dataMovies.map( (movie, idx) => {
-              return (
-                <div key={movie.id} className="movie-popular-card">
-                  <div className="card-image">
-                    <img src={`${this.imageEp}${movie.poster_path}`} alt={`${movie.title}`} />
-                  </div>
-                  <div className="card-content">
-                    <div className="card-content-title">{movie.title}</div>
-                    <div>{movie.release_date}</div>
-                    <div>{movie.overview}</div>
-                    <div>More Info</div>
-                  </div>
-                </div>
-              )
-            })
-          }
-        </div>
-        <div>
-          <Pagination totalPages={totalPages} totalRecords={totalMovies} pageLimit={20} pageNeighbours={1} onPageChanged={this.onPageChanged} />
-        </div>
+        <MovieList dataMovies={dataMovies} />
+        <Pagination totalPages={totalPages} totalRecords={totalMovies} pageLimit={20} pageNeighbours={2} onPageChanged={this.onPageChanged} />
       </div>
     )
   }

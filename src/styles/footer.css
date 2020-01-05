@@ -1,0 +1,20 @@
+.footer {
+  display: flex;
+  background: #031C24;
+  padding: 0 20px;
+}
+
+.footer-title {
+  font-size: 1rem;
+  font-weight: 550;
+  margin-right: 30px;
+  color: #00E571;
+}
+
+.footer-desc {
+  color: #fff;
+}
+
+.item-class {
+  display: block;
+}

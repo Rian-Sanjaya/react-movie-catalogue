@@ -1,0 +1,33 @@
+div#form-box {
+  box-sizing: border-box;
+  text-align: center;
+  background: #fff;
+  border-bottom: 1px solid #dedede;
+  height: 45px;
+}
+
+div#input-group {
+  width: 900px;
+  margin: 0 auto 20px;
+  position: relative;
+  background-color: #fff;
+  border: none;
+  border-radius: 5px;
+}
+
+
+input#email, label[for="email"] {
+  display:inline-block;
+  vertical-align: middle;
+}
+
+input#email {
+  width: calc(100% - 40px);
+  padding: 10px;
+  border: none;
+}
+
+label[for="email"] {
+  width: 40px;
+  line-height: 40px;
+}
