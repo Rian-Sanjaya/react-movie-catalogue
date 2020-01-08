@@ -4,6 +4,7 @@ import Navigation from './components/Navigation'
 import Footer from './components/Footer'
 import Home from './components/Home'
 import MoviePopular from './components/MoviePopular'
+import SearchResult from './components/SearchResult'
 import './styles/app.css'
 import './styles/navigation.css'
 
@@ -28,6 +29,7 @@ class App extends React.Component {
           <Switch>
             <Route exact path="/" render={(props) => <Home {...props} navShrink={navShrink} />} />
             <Route path="/movie/popular" component={MoviePopular} />
+            <Route path="/search/result" component={SearchResult} />
           </Switch>
           <Footer />
         </Router>

@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import moment from 'moment'
 import { stringTruncate } from '../helper/stringHelper'
 import '../styles/movieList.css'
 
@@ -30,7 +31,7 @@ class MovieList extends Component {
                     </div>
                     <div className="movie-title">
                       <div className="card-content-title">{movie.title}</div>
-                      <div className="movie-release-date">{movie.release_date}</div>
+                      <div className="movie-release-date">{moment(movie.release_date, 'YYYY-MM-DD').format('MMMM D, YYYY')}</div>
                     </div>
                   </div>
                   <div className="movie-overview">{stringTruncate(movie.overview, 200)}</div>

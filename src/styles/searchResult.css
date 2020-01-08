@@ -1,0 +1,73 @@
+.search-result-container {
+  width: 900px;
+  margin: 0 auto;
+  display: flex;
+}
+
+.search-result-sidebar {
+  flex: 1;
+}
+
+.search-result-sidebar button {
+  width: 100%;
+  padding: 0;
+  border: none;
+  background: transparent;
+  outline: none;
+  text-align: left;
+  cursor: pointer;
+}
+
+.search-result-content-container {
+  flex: 2;
+}
+
+.search-result-card {
+  display: flex;
+  margin-bottom: 20px;
+  -webkit-box-shadow: 7px 7px 0px -1px rgba(235,235,235,0.7);
+  -moz-box-shadow: 7px 7px 0px -1px rgba(235,235,235,0.7);
+  box-shadow: 7px 7px 0px -1px rgba(235,235,235,0.7);
+}
+
+.search-result-card .card-image {
+  flex: 1;
+}
+
+.search-result-content {
+  flex: 2;
+  padding: 0 15px;
+}
+
+.search-result-content-header {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.search-result-movie-rate {
+  margin-right: 10px;
+  font-size: 1.2rem;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.search-result-movie-title {
+  flex: 1;
+}
+
+.search-result-content-title {
+  font-weight: 600;
+  font-size: 1.3rem;
+}
+
+.search-result-movie-release-date,
+.search-result-movie-overview {
+  color: #9B9B9B;
+}
+
+.search-result-movie-overview {
+  margin-bottom: 20px;
+}
+
+.search-result-movie-more-info {
+  color: #070707;
+}

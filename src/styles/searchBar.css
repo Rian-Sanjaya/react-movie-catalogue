@@ -1,9 +1,9 @@
-div#form-box {
+div#search-container {
   box-sizing: border-box;
   text-align: center;
   background: #fff;
   border-bottom: 1px solid #dedede;
-  height: 45px;
+  height: 46px;
 }
 
 div#input-group {
@@ -16,18 +16,18 @@ div#input-group {
 }
 
 
-input#email, label[for="email"] {
+input#search-input, label[for="search-input"] {
   display:inline-block;
   vertical-align: middle;
 }
 
-input#email {
+input#search-input {
   width: calc(100% - 40px);
   padding: 10px;
   border: none;
 }
 
-label[for="email"] {
+label[for="search-input"] {
   width: 40px;
   line-height: 40px;
 }

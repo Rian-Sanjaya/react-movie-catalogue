@@ -2,8 +2,8 @@
   padding: 30px 0;
 }
 
-ul.pagination {
-  width: 441px;
+ul.pagination-list {
+  width: 465px;
   margin: 0 auto;
   padding: 0;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);

@@ -36,38 +36,38 @@ class Navigation extends React.Component {
 
     return (
       <div className="nav-wrapper">
-      <div ref={this.nav} className="nav-container">
-        <div className={navShrink ? "nav-logo shrink" : "nav-logo"}>
-          <Link to='/'>
-            Movie<br/>
-            Catalogue
-          </Link>
+        <div ref={this.nav} className="nav-container">
+          <div className={navShrink ? "nav-logo shrink" : "nav-logo"}>
+            <Link to='/'>
+              Movie<br/>
+              Catalogue
+            </Link>
+          </div>
+          <div className={navShrink ? "nav-menu shrink" : "nav-menu"}>
+            <ul>
+              <li>
+                <Link to="/movie/popular">Movies</Link>
+                <div className="movies-submenu">
+                  <Link to="/movie/popular">Popular</Link>
+                  <Link to="/">Top Rated</Link>
+                  <Link to="/">Upcoming</Link>
+                  <Link to="/">Now Playing</Link>
+                </div>
+              </li>
+              <li>
+                <Link to="/">Tv Shows</Link>
+                <div className="movies-submenu">
+                  <Link to="/">Popular</Link>
+                  <Link to="/">Top Rated</Link>
+                  <Link to="/">On TV</Link>
+                  <Link to="/">Airing Today</Link>
+                </div>
+              </li>
+              <li><Link to="/">People</Link></li>
+            </ul>
+          </div>
         </div>
-        <div className={navShrink ? "nav-menu shrink" : "nav-menu"}>
-          <ul>
-            <li>
-              <Link to="/movie/popular">Movies</Link>
-              <div className="movies-submenu">
-                <Link to="/movie/popular">Popular</Link>
-                <Link to="/">Top Rated</Link>
-                <Link to="/">Upcoming</Link>
-                <Link to="/">Now Playing</Link>
-              </div>
-            </li>
-            <li>
-              <Link to="/">Tv Shows</Link>
-              <div className="movies-submenu">
-                <Link to="/">Popular</Link>
-                <Link to="/">Top Rated</Link>
-                <Link to="/">On TV</Link>
-                <Link to="/">Airing Today</Link>
-              </div>
-            </li>
-            <li><Link to="/">People</Link></li>
-          </ul>
-        </div>
-      </div>
-      <SearchBar />
+        <SearchBar />
       </div>
     )
   }

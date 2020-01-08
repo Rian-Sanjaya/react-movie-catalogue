@@ -166,7 +166,7 @@ class Pagination extends Component {
     return (
       <Fragment>
         <nav className="nav-pagination" aria-label="Countries Pagination">
-          <ul className="pagination">
+          <ul className="pagination-list">
             {
               pages.map( (page, index) => {
                 if (page === LEFT_PAGE) return (
