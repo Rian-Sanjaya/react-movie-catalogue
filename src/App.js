@@ -6,6 +6,7 @@ import Home from './components/Home'
 import MoviePopular from './components/MoviePopular'
 import TvShowsPopular from './components/TvShowsPopular'
 import SearchResult from './components/SearchResult'
+import MovieDetail from './components/MovieDetail'
 import './styles/app.css'
 import './styles/navigation.css'
 
@@ -46,6 +47,7 @@ class App extends React.Component {
               )}
             />
             <Route path="/search/result" component={SearchResult} />
+            <Route path="/movie/detail" component={MovieDetail} />
           </Switch>
           <Footer />
         </Router>

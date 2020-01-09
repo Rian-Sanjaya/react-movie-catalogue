@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 import moment from 'moment'
 import { stringTruncate } from '../helper/stringHelper'
 import '../styles/movieList.css'
@@ -22,7 +23,9 @@ class MovieList extends Component {
             return (
               <div key={movie.id} className="movie-popular-card">
                 <div className="card-image">
-                  <img src={`${this.imageEp}${movie.poster_path}`} alt={`${movie.title}`} />
+                  <Link to="/movie/detail">
+                    <img src={`${this.imageEp}${movie.poster_path}`} alt={`${movie.title}`} />
+                  </Link>
                 </div>
                 <div className="card-content">
                   <div className='card-content-header'>
