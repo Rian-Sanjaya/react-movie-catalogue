@@ -5,7 +5,16 @@
 }
 
 .search-result-sidebar {
-  flex: 1;
+  flex: 0.7;
+  border-top: 2px solid;
+  margin-bottom: 30px;
+}
+
+.search-result-sidebar div {  
+  padding: 10px;
+  font-size: 1.2rem;
+  font-weight: 550;
+  border-bottom: 2px solid;
 }
 
 .search-result-sidebar button {
@@ -20,6 +29,12 @@
 
 .search-result-content-container {
   flex: 2;
+  padding-left: 30px;
+}
+
+.search-result-content-container p {
+  font-size: 1.5rem;
+  font-weight: 600;
 }
 
 .search-result-card {

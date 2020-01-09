@@ -55,9 +55,9 @@ class Navigation extends React.Component {
                 </div>
               </li>
               <li>
-                <Link to="/">Tv Shows</Link>
+                <Link to="/tvshows/popular">Tv Shows</Link>
                 <div className="movies-submenu">
-                  <Link to="/">Popular</Link>
+                  <Link to="/tvshows/popular">Popular</Link>
                   <Link to="/">Top Rated</Link>
                   <Link to="/">On TV</Link>
                   <Link to="/">Airing Today</Link>

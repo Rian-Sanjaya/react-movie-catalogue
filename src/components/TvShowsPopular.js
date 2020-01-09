@@ -4,7 +4,7 @@ import MovieList from './MovieList'
 import Pagination from './Pagination'
 import Loader from './Loader'
 
-class MoviePopular extends React.Component {
+class TvShowsPopular extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -75,7 +75,7 @@ class MoviePopular extends React.Component {
 
     return (
       <div className="movie-popular-container">
-        <h2>Popular Movies</h2>
+        <h2>Popular TV Shows</h2>
         <MovieList dataMovies={dataMovies} />
         <Pagination currentPage={currentPage} totalPages={totalPages} totalRecords={totalMovies} pageLimit={20} pageNeighbours={2} onPageChanged={this.onPageChanged} />
       </div>
@@ -83,4 +83,4 @@ class MoviePopular extends React.Component {
   }
 }
 
-export default MoviePopular
+export default TvShowsPopular

@@ -4,6 +4,7 @@ import Navigation from './components/Navigation'
 import Footer from './components/Footer'
 import Home from './components/Home'
 import MoviePopular from './components/MoviePopular'
+import TvShowsPopular from './components/TvShowsPopular'
 import SearchResult from './components/SearchResult'
 import './styles/app.css'
 import './styles/navigation.css'
@@ -28,7 +29,22 @@ class App extends React.Component {
           <Navigation navShrink={navShrink} onHandleNavShrink={(val) => this.handleNavShrink(val)} />
           <Switch>
             <Route exact path="/" render={(props) => <Home {...props} navShrink={navShrink} />} />
-            <Route path="/movie/popular" component={MoviePopular} />
+            <Route 
+              path='/movie/popular' 
+              render={(props) => (
+                <MoviePopular {...props} 
+                  baseUrl={`https://api.themoviedb.org/3/movie/popular?api_key=e4621b68dcd1fa1de4a66cfd0664dc28&language=en-US`} 
+                />
+              )} 
+            />
+            <Route 
+              path='/tvshows/popular'
+              render={(props) => (
+                <TvShowsPopular {...props}
+                  baseUrl={`https://api.themoviedb.org/3/tv/popular?api_key=e4621b68dcd1fa1de4a66cfd0664dc28&language=en-US`}
+                />
+              )}
+            />
             <Route path="/search/result" component={SearchResult} />
           </Switch>
           <Footer />

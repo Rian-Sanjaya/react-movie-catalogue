@@ -13,6 +13,7 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 import "react-multi-carousel/lib/styles.css";
 import '../styles/home.css'
+import Loader from './Loader'
 
 const styles = theme => ({
   cont: {
@@ -41,6 +42,7 @@ class Home extends React.Component {
     this.state = {
       newMovies: [],
       newTvShows: [],
+      load: true,
     }
 
     this.imageEp = 'https://image.tmdb.org/t/p/w185'
@@ -65,7 +67,8 @@ class Home extends React.Component {
       const results = res.data.results
       if (results.length > 0) {
         this.setState({
-          newTvShows: results
+          newTvShows: results,
+          load: false,
         })
       }
     })
@@ -76,7 +79,7 @@ class Home extends React.Component {
 
   render() {
     const { navShrink, classes } = this.props
-    const { newMovies, newTvShows } = this.state
+    const { newMovies, newTvShows, load } = this.state
 
     // const responsive = {
     //   superLargeDesktop: {
@@ -116,6 +119,12 @@ class Home extends React.Component {
         items: 1,
       },
     };
+
+    if (load) return (
+      <div className="loader-wrapper">
+        <Loader />
+      </div>
+    )
 
     return (
       <div className="home-container">
