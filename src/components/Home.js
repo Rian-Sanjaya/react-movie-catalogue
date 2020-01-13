@@ -121,9 +121,9 @@ class Home extends React.Component {
     };
 
     if (load) return (
-      <div className="loader-wrapper">
+      // <div className="loader-wrapper">
         <Loader />
-      </div>
+      // </div>
     )
 
     return (

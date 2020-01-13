@@ -237,9 +237,9 @@ class SearchResult extends Component {
     // console.log(`page: ${this.currentPage}`)
 
     if (load) return (
-      <div className="loader-wrapper">
+      // <div className="loader-wrapper">
         <Loader />
-      </div>
+      // </div>
     )
 
     return (

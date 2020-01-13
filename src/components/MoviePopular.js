@@ -68,9 +68,9 @@ class MoviePopular extends React.Component {
     const { dataMovies, totalMovies, totalPages, currentPage, load } = this.state
 
     if (load) return (
-      <div className="loader-wrapper">
+      // <div className="loader-wrapper">
         <Loader />
-      </div>
+      // </div>
     )
 
     return (

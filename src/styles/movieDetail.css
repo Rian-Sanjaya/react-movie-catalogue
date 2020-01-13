@@ -1,3 +1,82 @@
 div.md-wrapper {
   margin-top: 175px;
 }
+
+div.md-header-container {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 50% 50%;
+  height: 600px;
+}
+
+div.md-header {
+  width: 70%;
+  margin: 0 auto;
+  padding: 40px 0;
+  display: flex;
+}
+
+div.md-header-poster {
+  height: 400px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  flex: 0.8;
+}
+
+div.md-header-content {
+  padding-left: 20px;
+  color: #fff;
+  flex: 2;
+}
+
+div.md-header-content h2 {
+  font-size: 3rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+div.md-header-content p {
+  font-size: 1.5rem;
+  font-weight: 100;
+}
+
+ul.md-header-score {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+ul.md-header-score li {
+  display: inline-block;
+  padding-right: 30px;
+}
+
+ul.md-header-score li div {
+  display: inline-block;
+}
+
+ul.md-header-score li div:first-child {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-right: 6px
+}
+
+ul.md-header-score li div:nth-child(2) {
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 0.9rem;
+  font-weight: 800;
+}
+
+ul.md-header-score li:nth-child(2) {
+  font-size: 1.1rem;
+}
+
+div.md-header-overview h3 {
+  font-size: 1.5rem;
+  font-weight: 450;
+}
+
+div.md-header-overview p {
+  font-size: 1.2rem;
+}

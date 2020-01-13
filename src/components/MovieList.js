@@ -23,7 +23,12 @@ class MovieList extends Component {
             return (
               <div key={movie.id} className="movie-popular-card">
                 <div className="card-image">
-                  <Link to="/movie/detail">
+                  <Link to={{
+                    pathname: "/movie/detail",
+                    state: {
+                      movieId: movie.id
+                    }
+                  }}>
                     <img src={`${this.imageEp}${movie.poster_path}`} alt={`${movie.title}`} />
                   </Link>
                 </div>
