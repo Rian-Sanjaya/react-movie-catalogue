@@ -12,7 +12,7 @@
 
 .movie-popular-card {
   display: flex;
-  width: 48%;
+  flex-basis: 48%;
   margin-bottom: 20px;
   -webkit-box-shadow: 7px 7px 0px -1px rgba(235,235,235,0.7);
   -moz-box-shadow: 7px 7px 0px -1px rgba(235,235,235,0.7);
@@ -22,6 +22,17 @@
 /* .movie-popular-card:nth-child(odd) {
   margin-right: 20px;
 } */
+
+@media screen and (max-width: 935px) {
+  .movie-popular-container {
+    width: 490px;
+  }
+
+  .movie-popular-card {
+    flex-basis: 93%;
+    margin: 0 auto 20px;
+  }
+}
 
 .card-content {
   padding: 0 15px;
