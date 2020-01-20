@@ -1,5 +1,5 @@
 div.md-wrapper {
-  margin-top: 175px;
+  margin-top: 158px;
 }
 
 div.md-header-container {
@@ -84,6 +84,7 @@ div.md-header-overview p {
 div.crew-article {
   display: inline-block;
   width: 33%;
+  margin-bottom: 20px;
 }
 
 div.md-main {
@@ -100,7 +101,17 @@ div.md-main-content {
 div.md-main-side {
   flex-basis: 30%;
   background: #f1f1f1;
-  padding-left: 30px;
+  padding: 0 0 20px 20px;
+}
+
+.content-section {
+  width: 845px;
+}
+
+@media screen and (max-width: 1058px) {
+  .content-section {
+    width: 100%;
+  }
 }
 
 section.top-cast ul {
@@ -110,6 +121,20 @@ section.top-cast ul {
   margin: 0;
 }
 
+section.top-cast ul li.card {
+  width: 20%;
+  margin: 0 5px 10px;
+  box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);
+}
+
 section.top-cast ul li img {
-  width: 138px;
+  /* width: 138px; */
+  width: 100%;
+  height: auto;
+  vertical-align: middle;
+}
+
+section.top-cast ul li h4, 
+section.top-cast ul li p {
+  padding: 0 10px;
 }

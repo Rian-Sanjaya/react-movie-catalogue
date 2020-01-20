@@ -22,6 +22,10 @@ class MovieDetail extends Component {
     }
   }
 
+  lngs = {
+    en: 'English',
+  }
+
   componentDidMount() {
     const { movieId } = this.props.location.state
 
@@ -166,7 +170,7 @@ class MovieDetail extends Component {
         </div>
         <div className="md-main">
           <div className="md-main-content">
-            <div>
+            <div className="content-section">
               <section className="top-cast">
                 <h2>Top Cast</h2>
                 <ul>
@@ -175,6 +179,8 @@ class MovieDetail extends Component {
                     return (
                         <li key={cast.id} className="card">
                           <img src={`https://image.tmdb.org/t/p/w185${cast.profile_path}`} alt='' />
+                          <h4>{cast.name}</h4>
+                          <p>{cast.character}</p>
                         </li>
                     )
                   })
@@ -185,6 +191,26 @@ class MovieDetail extends Component {
           </div>
           <div className="md-main-side">
             <h3>Facts</h3>
+            <h4>Status</h4>
+            <p>{movieData.status}</p>
+            <h4>Original Language</h4>
+            <p>{this.lngs[movieData.original_language]}</p>
+            <h4>Runtime</h4>
+            <p>{`${parseInt(movieData.runtime/60)}h ${movieData.runtime % 60}m`}</p>
+            <h4>Budget</h4>
+            <p>{`$${(movieData.budget).toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')}`}</p>
+            <h4>Revenue</h4>
+            <p>{`$${(movieData.revenue).toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')}`}</p>
+            <h4>Genres</h4>
+            <p>
+              {
+                movieData.genres.map( item => {
+                  return (
+                    <div key={item.id}>{item.name}</div>
+                  )
+                })
+              }
+            </p>
           </div>
         </div>
       </div>
