@@ -10,7 +10,7 @@ div.md-header-container {
 }
 
 div.md-header {
-  width: 70%;
+  width: 1000px;
   margin: 0 auto;
   padding: 40px 0;
   display: flex;
@@ -72,6 +72,10 @@ ul.md-header-score li:nth-child(2) {
   font-size: 1.1rem;
 }
 
+ul.md-header-score li.play-video {
+  cursor: pointer;
+}
+
 div.md-header-overview h3 {
   font-size: 1.5rem;
   font-weight: 450;
@@ -92,49 +96,94 @@ div.md-main {
 }
 
 div.md-main-content {
-  flex-basis: 70%;
+  width: calc((100vw - 1000px) / 2 + 780px);
   display: flex;
   justify-content: flex-end;
-  padding-right: 30px;
+  padding-right: 40px;
 }
 
 div.md-main-side {
-  flex-basis: 30%;
+  width: calc((100vw - 1000px) / 2 + 220px);
   background: #f1f1f1;
-  padding: 0 0 20px 20px;
+  padding: 0 0 20px 40px;
 }
 
-.content-section {
-  width: 845px;
+div.md-main-side-content {
+  width: 180px;
 }
 
-@media screen and (max-width: 1058px) {
-  .content-section {
-    width: 100%;
-  }
+/* .content-section {
+  max-width: 845px;
+} */
+
+section.top-cast {
+  width: 740px;
 }
 
 section.top-cast ul {
   display: flex;
+  flex-wrap: wrap;
   list-style: none;
   padding: 0;
   margin: 0;
 }
 
 section.top-cast ul li.card {
-  width: 20%;
-  margin: 0 5px 10px;
+  flex-basis: 20%;
+  padding: 0 5px;
+  margin-bottom: 10px;
   box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);
 }
 
 section.top-cast ul li img {
-  /* width: 138px; */
   width: 100%;
-  height: auto;
+  height: 210px;
   vertical-align: middle;
 }
 
 section.top-cast ul li h4, 
 section.top-cast ul li p {
   padding: 0 10px;
+}
+
+@media screen and (max-width: 1000px) {
+  div.md-header {
+    width: 100%;
+  }
+
+  section.top-cast {
+    width: 100%;
+  }
+
+  div.md-main-content {
+    flex-basis: 75%;
+  }
+
+  div.md-main-side {
+    flex-basis: 25%;
+  }
+
+  div.md-main-side-content {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  section.top-cast ul li.card {
+    flex-basis: 33.33%;
+  }
+}
+
+@media screen and (max-width: 645px) {
+  div.md-main-content {
+    flex-basis: 70%;
+  }
+
+  div.md-main-side {
+    flex-basis: 30%;
+  }
+
+  section.top-cast ul li.card {
+    flex-basis: 50%;
+  }
 }

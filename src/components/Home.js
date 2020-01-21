@@ -42,7 +42,8 @@ class Home extends React.Component {
     this.state = {
       newMovies: [],
       newTvShows: [],
-      load: true,
+      loadMovies: true,
+      loadTv: true,
     }
 
     this.imageEp = 'https://image.tmdb.org/t/p/w185'
@@ -54,7 +55,8 @@ class Home extends React.Component {
       const results = res.data.results
       if (results.length > 0) {
         this.setState({
-          newMovies: results
+          newMovies: results,
+          loadMovies: false,
         })
       }
     })
@@ -68,7 +70,7 @@ class Home extends React.Component {
       if (results.length > 0) {
         this.setState({
           newTvShows: results,
-          load: false,
+          loadTv: false,
         })
       }
     })
@@ -79,7 +81,7 @@ class Home extends React.Component {
 
   render() {
     const { navShrink, classes } = this.props
-    const { newMovies, newTvShows, load } = this.state
+    const { newMovies, newTvShows, loadMovies, loadTv } = this.state
 
     // const responsive = {
     //   superLargeDesktop: {
@@ -120,16 +122,26 @@ class Home extends React.Component {
       },
     };
 
-    if (load) return (
+    if (loadMovies || loadTv) return (
       // <div className="loader-wrapper">
         <Loader />
       // </div>
     )
 
+    console.log(newMovies)
+
     return (
       <div className="home-container">
         <div className={navShrink ? "hero-container shrink" : "hero-container"}>
-          <div className="hero-image">
+          <div 
+            className="hero-image" 
+            style={{ 
+              // background: newMovies.length > 0 
+              //   ? `linearGradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url(https://image.tmdb.org/t/p/w185${newMovies[0].poster_path})` 
+              //   : '' 
+              backgroundImage: `url(https://image.tmdb.org/t/p/w185${newMovies[0].backdrop_path})`
+            }}
+          >
             <div className="hero-content">
               <div className="hero-title">Movie Catalogue</div>
               <div className="hero-desc">Your Movies and TV Shows Info</div>

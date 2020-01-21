@@ -9,7 +9,6 @@ class MovieDetail extends Component {
 
     this.state = {
       movieData: {},
-      loadDetail: true,
       crewData: {
         directors: [],
         characters: [],
@@ -17,8 +16,11 @@ class MovieDetail extends Component {
         screenplays: [],
         stories: [],
       },
-      loadCrew: false,
       casts: [],
+      videoData: [],
+      loadDetail: true,
+      loadCrew: true,
+      loadVideo: true,
     }
   }
 
@@ -44,7 +46,7 @@ class MovieDetail extends Component {
 
     axios.get(`https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=e4621b68dcd1fa1de4a66cfd0664dc28`)
     .then( res => {
-      console.log(res)
+      // console.log(res)
       let directors = []
       let characters = []
       let writers = []
@@ -82,18 +84,41 @@ class MovieDetail extends Component {
             stories: stories.length > 0 ? stories : [],
           },
           casts: casts.length > 0 ? casts : [],
+          loadCrew: false,
         })
       }
     })
     .catch( err => {
       console.log(err)
     })
+
+    axios.get(`https://api.themoviedb.org/3/movie/${movieId}/videos?api_key=e4621b68dcd1fa1de4a66cfd0664dc28&language=en-US`)
+    .then( res => {
+      // console.log(res)
+      if (res.status === 200 && res.data) {
+        this.setState({
+          videoData: res.data.results,
+          loadVideo: false,
+        })
+      }
+    })
+    .catch( err => {
+      console.error(err)
+    })
   }
 
   render() {
-    const { movieData, loadDetail, crewData: {directors, characters, writers, screenplays, stories}, loadCrew, casts } = this.state
-    
-    if (loadDetail) return (
+    const { 
+      movieData, 
+      loadDetail, 
+      loadCrew,
+      loadVideo,
+      crewData: {directors, characters, writers, screenplays, stories}, 
+      casts, 
+      videoData 
+    } = this.state
+    // console.log({movieData})
+    if (loadDetail || loadCrew || loadVideo) return (
       <Loader />
     )
 
@@ -101,6 +126,7 @@ class MovieDetail extends Component {
     // https://image.tmdb.org/t/p/w1400_and_h450_face/jOzrELAzFxtMx2I4uDGHOotdfsS.jpg
     return (
       <div className="md-wrapper">
+
         <div className="md-header-container" 
           style={{
             backgroundImage: `radial-gradient(circle at 20% 50%, rgba(18.04%, 9.41%, 23.14%, 0.98) 0%, rgba(25.10%, 15.69%, 30.59%, 0.88) 100%), url(https://image.tmdb.org/t/p/w1400_and_h450_face${movieData.backdrop_path})`
@@ -119,7 +145,7 @@ class MovieDetail extends Component {
                   <div>{`${movieData.vote_average * 10}%`}</div>
                   <div><p>User<br/>Score</p></div>
                 </li>
-                <li><span className="glyphicon glyphicon-play"></span> Play Trailer</li>
+                <li className="play-video" onClick={() => this.props.onShowVideo(videoData[0].key)}><span className="glyphicon glyphicon-play"></span> Play Trailer</li>
               </ul>
               <div className="md-header-overview">
                 <h3>Overview</h3>
@@ -168,6 +194,7 @@ class MovieDetail extends Component {
             </div>
           </div>
         </div>
+
         <div className="md-main">
           <div className="md-main-content">
             <div className="content-section">
@@ -190,29 +217,32 @@ class MovieDetail extends Component {
             </div>
           </div>
           <div className="md-main-side">
-            <h3>Facts</h3>
-            <h4>Status</h4>
-            <p>{movieData.status}</p>
-            <h4>Original Language</h4>
-            <p>{this.lngs[movieData.original_language]}</p>
-            <h4>Runtime</h4>
-            <p>{`${parseInt(movieData.runtime/60)}h ${movieData.runtime % 60}m`}</p>
-            <h4>Budget</h4>
-            <p>{`$${(movieData.budget).toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')}`}</p>
-            <h4>Revenue</h4>
-            <p>{`$${(movieData.revenue).toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')}`}</p>
-            <h4>Genres</h4>
-            <p>
-              {
-                movieData.genres.map( item => {
-                  return (
-                    <div key={item.id}>{item.name}</div>
-                  )
-                })
-              }
-            </p>
+            <div className="md-main-side-content">
+              <h3>Facts</h3>
+              <h4>Status</h4>
+              <p>{movieData.status}</p>
+              <h4>Original Language</h4>
+              <p>{this.lngs[movieData.original_language]}</p>
+              <h4>Runtime</h4>
+              <p>{`${parseInt(movieData.runtime/60)}h ${movieData.runtime % 60}m`}</p>
+              <h4>Budget</h4>
+              <p>{`$${(movieData.budget).toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')}`}</p>
+              <h4>Revenue</h4>
+              <p>{`$${(movieData.revenue).toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')}`}</p>
+              <h4>Genres</h4>
+              <div>
+                {
+                  movieData.genres.map( item => {
+                    return (
+                      <div key={item.id}>{item.name}</div>
+                    )
+                  })
+                }
+              </div>
+            </div>
           </div>
         </div>
+
       </div>
     )
   }

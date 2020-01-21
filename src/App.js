@@ -13,6 +13,8 @@ import './styles/navigation.css'
 class App extends React.Component {
   state = {
     navShrink: false,
+    videoDisp: false,
+    youtubeKey: '',
   }
 
   handleNavShrink(val) {
@@ -21,11 +23,41 @@ class App extends React.Component {
     })
   }
 
+  showVideo = (val) => {
+    this.setState({
+      videoDisp: true,
+      youtubeKey: val,
+    })
+  }
+
+  hideVideo = () => {
+    this.setState({
+      videoDisp: false,
+      youtubeKey: '',
+    })
+  }
+
   render() {
-    const { navShrink } = this.state
+    const { navShrink, videoDisp, youtubeKey } = this.state
 
     return (
       <div className="main-wrapper">
+
+        <div className="video-modal" style={{ display: videoDisp ? 'block' : 'none' }}>
+          <div className="video-container">
+            <div className="video-content">
+              <div className="close-video" title="Close" onClick={this.hideVideo}>X</div>
+              <iframe 
+                className="video-frame"
+                type="text/html"
+                src={`https://www.youtube.com/embed/${youtubeKey}`}
+                title="Star Wars"
+                frameBorder="0"
+              />
+            </div>
+          </div>
+        </div>
+
         <Router>
           <Navigation navShrink={navShrink} onHandleNavShrink={(val) => this.handleNavShrink(val)} />
           <Switch>
@@ -47,10 +79,17 @@ class App extends React.Component {
               )}
             />
             <Route path="/search/result" component={SearchResult} />
-            <Route path="/movie/detail" component={MovieDetail} />
+            <Route 
+              path="/movie/detail" 
+              // component={MovieDetail} 
+              render={ props => (
+                <MovieDetail {...props} onShowVideo={this.showVideo} />
+              )}
+            />
           </Switch>
           <Footer />
         </Router>
+
       </div>
     );
   }

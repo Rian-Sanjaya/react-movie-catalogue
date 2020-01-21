@@ -3,7 +3,7 @@
 }
 
 .hero-image {
-  background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url('/images/starwars9.jpg');
+  /* background-image: url('/public/images/starwars9.jpg'); */
   height: 438px;
   background-repeat: no-repeat;
   background-position: center;

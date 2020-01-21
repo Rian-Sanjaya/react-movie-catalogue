@@ -1,7 +1,7 @@
 .nav-wrapper {
   position: fixed;
   top: 0;
-  z-index: 1001;
+  z-index: 10;
   width: 100%;
 }
 
