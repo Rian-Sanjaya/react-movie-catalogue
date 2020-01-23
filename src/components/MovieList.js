@@ -38,12 +38,33 @@ class MovieList extends Component {
                       {movie.vote_average * 10 + '%'}
                     </div>
                     <div className="movie-title">
-                      <div className="card-content-title">{movie.title}</div>
+                      <Link 
+                        to={{
+                          pathname: "/movie/detail",
+                          state: {
+                            movieId: movie.id
+                          }
+                        }}
+                        className="card-content-title"
+                      >
+                        {movie.title}
+                      </Link>
                       <div className="movie-release-date">{moment(movie.release_date, 'YYYY-MM-DD').format('MMMM D, YYYY')}</div>
                     </div>
                   </div>
                   <div className="movie-overview">{stringTruncate(movie.overview, 200)}</div>
-                  <div className="movie-more-info">More Info</div>
+                  <div className="movie-more-info">
+                    <Link 
+                      to={{
+                        pathname: "/movie/detail",
+                        state: {
+                          movieId: movie.id
+                        }
+                      }}
+                    >
+                      More Info
+                    </Link>
+                  </div>
                 </div>
               </div>
             )

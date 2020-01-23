@@ -4,7 +4,17 @@ import SearchBar from '../components/SearchBar'
 
 class Navigation extends React.Component {
   nav = React.createRef()
-  logo = React.createRef()
+  // logo = React.createRef()
+
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      showHamburgerMenu: false,
+      showMoviesSubMenu: false,
+      showTvShowsSubMenu: false,
+    }
+  }
 
   componentDidMount() {
     window.addEventListener('scroll', this.handleScroll, true)
@@ -31,10 +41,54 @@ class Navigation extends React.Component {
     }
   }
 
+  handleHamburgerClick = () => {
+    this.setState({
+      showHamburgerMenu: !this.state.showHamburgerMenu,
+    })
+  }
+
+  handleHamburgerMenuClick = (menu) => {
+    if (menu === 'movies')
+      this.setState({
+        showMoviesSubMenu: !this.state.showMoviesSubMenu
+      })
+    else if (menu === 'tvshows')
+      this.setState({
+        showTvShowsSubMenu: !this.state.showTvShowsSubMenu
+      })
+  }
+
   render() {
+    const { showHamburgerMenu, showMoviesSubMenu, showTvShowsSubMenu } = this.state
     const { navShrink } = this.props
 
     return (
+      <nav>
+        <div className="mm-hamburger-menu"><span onClick={this.handleHamburgerClick}><i className="fa fa-bars"></i></span></div>
+        <div className={showHamburgerMenu ? "mobile-menu show-menu" : "mobile-menu"}>
+          <ul>
+            <li>
+              <Link onClick={() => this.handleHamburgerMenuClick('movies')}>Movies</Link>
+              <div className={showMoviesSubMenu ? "mm-movies-submenu show-movies-sub" : 'mm-movies-submenu'}>
+                <Link to="/movie/popular">Popular</Link>
+                <Link to="/">Top Rated</Link>
+                <Link to="/">Upcoming</Link>
+                <Link to="/">Now Playing</Link>
+              </div>
+            </li>
+            <li>
+              <Link onClick={() => this.handleHamburgerMenuClick('tvshows')}>Tv Shows</Link>
+              <div className={showTvShowsSubMenu ? "mm-movies-submenu show-tvshows-sub" : 'mm-movies-submenu'}>
+                <Link to="/tvshows/popular">Popular</Link>
+                <Link to="/">Top Rated</Link>
+                <Link to="/">On TV</Link>
+                <Link to="/">Airing Today</Link>
+              </div>
+            </li>
+            <li><Link to="/">People</Link></li>
+          </ul>
+        </div>
+
       <div className="nav-wrapper">
         <div ref={this.nav} className="nav-container">
           <div className={navShrink ? "nav-logo shrink" : "nav-logo"}>
@@ -69,6 +123,7 @@ class Navigation extends React.Component {
         </div>
         <SearchBar />
       </div>
+      </nav>
     )
   }
 }

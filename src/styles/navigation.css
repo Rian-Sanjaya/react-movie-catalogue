@@ -17,6 +17,7 @@
   z-index: 99;
   width: 100%; */
   transition: 0.4s;
+  position: relative;
 }
 
 .nav-logo {
@@ -94,4 +95,86 @@
 
 .nav-menu ul li:hover .movies-submenu {
   display: block;
+}
+
+.mobile-menu {
+  position: fixed;
+  right: -250px;
+  top: 0;
+  z-index: 11;
+  width: 250px;
+  height: 100%;
+  background: #000;
+  padding-top: 48px;
+  transition: 0.5s;
+  opacity: 0.92;
+}
+
+.mobile-menu ul {
+  margin: 0;
+  padding: 0 0 0 30px;
+  height: 100%;
+}
+
+.mm-hamburger-menu {
+  color: #fff;
+  padding: 10px 0 0;
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 13;
+  font-size: 1.5rem;
+  cursor: pointer;
+  display: none;
+}
+
+.mm-hamburger-menu span {
+  cursor: pointer;
+  padding-right: 15px;
+}
+
+.mobile-menu ul li>a {
+  text-decoration: none;
+  text-transform: uppercase;
+  color: #fff;
+}
+
+.mobile-menu ul li {
+  padding: 5px 0;
+}
+
+.mm-movies-submenu {
+  padding-left: 15px;
+  height: 0;
+  overflow-y: hidden;
+  transition: 0.3s;
+}
+
+.mm-movies-submenu.show-movies-sub,
+.mm-movies-submenu.show-tvshows-sub {
+  height: 88px;
+}
+
+.mm-movies-submenu a {
+  display: block;
+  text-decoration: none;
+  color: #9b9b9b;
+}
+
+.mm-movies-submenu a:hover {
+  color: #748C91;
+}
+
+@media screen and (max-width: 645px) {
+  .nav-menu {
+    display: none;
+  }
+  
+  .mm-hamburger-menu {
+    display: block;
+  }
+
+  .mobile-menu.show-menu {
+    right: 0;
+  }
 }

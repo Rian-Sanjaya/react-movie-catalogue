@@ -56,6 +56,12 @@
 .card-content-title {
   font-weight: 600;
   font-size: 1.3rem;
+  color: #000;
+}
+
+.card-content-title:hover {
+  text-decoration: none;
+  color: #000;
 }
 
 .movie-release-date,
@@ -67,6 +73,11 @@
   margin-bottom: 20px;
 }
 
-.movie-more-info {
+.movie-more-info a {
   color: #070707;
+}
+
+.movie-more-info a:hover {
+  color: #070707;
+  text-decoration: none;
 }

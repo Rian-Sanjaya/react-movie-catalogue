@@ -14,6 +14,7 @@ import Typography from '@material-ui/core/Typography';
 import "react-multi-carousel/lib/styles.css";
 import '../styles/home.css'
 import Loader from './Loader'
+import { getRandomIntInclusive } from '../helper/getRandom'
 
 const styles = theme => ({
   cont: {
@@ -47,6 +48,7 @@ class Home extends React.Component {
     }
 
     this.imageEp = 'https://image.tmdb.org/t/p/w185'
+    this.newMovieIdx = -1
   }
 
   componentDidMount() {
@@ -57,7 +59,7 @@ class Home extends React.Component {
         this.setState({
           newMovies: results,
           loadMovies: false,
-        })
+        }, () => this.newMovieIdx = getRandomIntInclusive(0, results.length - 1))
       }
     })
     .catch( err => {
@@ -128,7 +130,7 @@ class Home extends React.Component {
       // </div>
     )
 
-    console.log(newMovies)
+    // console.log(newMovies)
 
     return (
       <div className="home-container">
@@ -136,10 +138,9 @@ class Home extends React.Component {
           <div 
             className="hero-image" 
             style={{ 
-              // background: newMovies.length > 0 
-              //   ? `linearGradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url(https://image.tmdb.org/t/p/w185${newMovies[0].poster_path})` 
-              //   : '' 
-              backgroundImage: `url(https://image.tmdb.org/t/p/w185${newMovies[0].backdrop_path})`
+              backgroundImage: newMovies.length > 0 && newMovies[this.newMovieIdx]
+                ? `linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url(https://image.tmdb.org/t/p/w342${newMovies[this.newMovieIdx].backdrop_path})`
+                : ''
             }}
           >
             <div className="hero-content">
