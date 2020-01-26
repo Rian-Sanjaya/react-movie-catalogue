@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, Frangment, Fragment } from 'react'
 import axios from 'axios'
 import '../styles/searchResult.css'
 import SearchResultList from './SearchResultList'
@@ -251,8 +251,13 @@ class SearchResult extends Component {
         </div>
         <div className="search-result-content-container">
           <p>{this.title}</p>
-          <SearchResultList lists={this.lists} />
-          <Pagination currentPage={this.currentPage} totalPages={this.totalPages} totalRecords={this.totalResults} pageLimit={20} pageNeighbours={2} onPageChanged={this.onPageChanged} />
+          {
+            (currentList === 'tvshows' || currentList === 'movies') && 
+            <Fragment>
+              <SearchResultList lists={this.lists} parentComponent={currentList} />
+              <Pagination currentPage={this.currentPage} totalPages={this.totalPages} totalRecords={this.totalResults} pageLimit={20} pageNeighbours={2} onPageChanged={this.onPageChanged} />
+            </Fragment>
+          }
         </div>
       </div>
     )

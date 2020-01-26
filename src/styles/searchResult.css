@@ -1,5 +1,5 @@
 .search-result-container {
-  width: 900px;
+  max-width: 900px;
   margin: 0 auto;
   display: flex;
 }
@@ -30,6 +30,7 @@
 .search-result-content-container {
   flex: 2;
   padding-left: 30px;
+  padding-right: 15px;
 }
 
 .search-result-content-container p {
@@ -52,6 +53,11 @@
 .search-result-content {
   flex: 2;
   padding: 0 15px;
+}
+
+.search-result-content a {
+  color: inherit;
+  text-decoration: none;
 }
 
 .search-result-content-header {
