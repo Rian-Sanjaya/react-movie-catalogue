@@ -135,19 +135,23 @@ class Home extends React.Component {
     return (
       <div className="home-container">
         <div className={navShrink ? "hero-container shrink" : "hero-container"}>
-          <div 
-            className="hero-image" 
-            style={{ 
-              backgroundImage: newMovies.length > 0 && newMovies[this.newMovieIdx]
-                ? `linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url(https://image.tmdb.org/t/p/w342${newMovies[this.newMovieIdx].backdrop_path})`
-                : ''
-            }}
-          >
-            <div className="hero-content">
-              <div className="hero-title">Movie Catalogue</div>
-              <div className="hero-desc">Your Movies and TV Shows Info</div>
-            </div>
-          </div>
+          {
+            (loadMovies || loadTv)  
+              ? <Loader className="hero-image" />
+              : <div 
+                  className="hero-image" 
+                  style={{ 
+                    backgroundImage: newMovies.length > 0 && newMovies[this.newMovieIdx]
+                      ? `linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url(https://image.tmdb.org/t/p/w342${newMovies[this.newMovieIdx].backdrop_path})`
+                      : ''
+                  }}
+                >
+                  <div className="hero-content">
+                    <div className="hero-title">Movie Catalogue</div>
+                    <div className="hero-desc">Your Movies and TV Shows Info</div>
+                  </div>
+                </div>
+          }
         </div>
         <div className="slider1-container">
           <p className="new-movies">New Movies</p>
@@ -175,7 +179,16 @@ class Home extends React.Component {
                       />
                       <CardContent>
                         <Typography className={classes.typo}>
-                          <Link to="/" className="slider-link">{movie.title}</Link>
+                          <Link 
+                            to={{
+                              pathname: '/movie/detail',
+                              state: {
+                                movieId: movie.id,
+                                parentComponent: 'movies',
+                              }
+                            }}
+                            className="slider-link"
+                          >{movie.title}</Link>
                         </Typography>
                       </CardContent>
                     </CardActionArea>
@@ -207,7 +220,16 @@ class Home extends React.Component {
                       />
                       <CardContent>
                         <Typography className={classes.typo}>
-                          <Link to="/" className="slider-link">{movie.name}</Link>
+                          <Link 
+                            to={{
+                              pathname: '/movie/detail',
+                              state: {
+                                movieId: movie.id,
+                                parentComponent: 'tvshows',
+                              }
+                            }} 
+                            className="slider-link"
+                          >{movie.name}</Link>
                         </Typography>
                       </CardContent>
                     </CardActionArea>

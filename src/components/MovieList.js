@@ -62,7 +62,8 @@ class MovieList extends Component {
                         to={{
                           pathname: "/movie/detail",
                           state: {
-                            movieId: movie.id
+                            movieId: movie.id,
+                            parentComponent: parentComponent
                           }
                         }}
                         className="card-content-title"
@@ -78,7 +79,8 @@ class MovieList extends Component {
                       to={{
                         pathname: "/movie/detail",
                         state: {
-                          movieId: movie.id
+                          movieId: movie.id,
+                          parentComponent: parentComponent
                         }
                       }}
                     >
