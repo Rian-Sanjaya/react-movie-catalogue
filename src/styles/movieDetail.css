@@ -6,7 +6,7 @@ div.md-header-container {
   background-repeat: no-repeat;
   background-size: cover;
   background-position: 50% 50%;
-  height: 600px;
+  /* height: 600px; */
 }
 
 div.md-header {
@@ -175,15 +175,21 @@ section.top-cast ul li p {
 }
 
 @media screen and (max-width: 645px) {
+  div.md-main {
+    flex-direction: column;
+  }
+
   div.md-main-content {
-    flex-basis: 70%;
+    /* flex-basis: 70%; */
+    width: auto;
   }
 
   div.md-main-side {
-    flex-basis: 30%;
+    /* flex-basis: 30%; */
+    width: auto;
   }
 
   section.top-cast ul li.card {
-    flex-basis: 50%;
+    /* flex-basis: 50%; */
   }
 }

@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import axios from 'axios'
 import '../styles/movieDetail.css'
 import Loader from './Loader'
@@ -29,9 +29,30 @@ class MovieDetail extends Component {
   }
 
   componentDidMount() {
-    const { movieId } = this.props.location.state
+    const { movieId, parentComponent } = this.props.location.state
 
-    axios.get(`https://api.themoviedb.org/3/movie/${movieId}?api_key=e4621b68dcd1fa1de4a66cfd0664dc28&language=en-US`)
+    let urlDetail, urlCredits, urlVideos
+
+    switch(parentComponent) {
+      case 'movies':
+        urlDetail = `https://api.themoviedb.org/3/movie/${movieId}?api_key=e4621b68dcd1fa1de4a66cfd0664dc28&language=en-US`
+        urlCredits = `https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=e4621b68dcd1fa1de4a66cfd0664dc28`
+        urlVideos = `https://api.themoviedb.org/3/movie/${movieId}/videos?api_key=e4621b68dcd1fa1de4a66cfd0664dc28&language=en-US`
+        break
+
+      case 'tvshows':
+        urlDetail = `https://api.themoviedb.org/3/tv/${movieId}?api_key=e4621b68dcd1fa1de4a66cfd0664dc28&language=en-US`
+        urlCredits = `https://api.themoviedb.org/3/tv/${movieId}/credits?api_key=e4621b68dcd1fa1de4a66cfd0664dc28&language=en-US`
+        urlVideos = `https://api.themoviedb.org/3/tv/${movieId}/videos?api_key=e4621b68dcd1fa1de4a66cfd0664dc28&language=en-US`
+        break
+
+      default:
+        urlDetail = ''
+        urlCredits = ''
+        urlVideos = ''
+    }
+
+    axios.get(urlDetail)
     .then( res => {
       if ( res.status === 200 && res.data) {
         this.setState({
@@ -44,7 +65,7 @@ class MovieDetail extends Component {
       console.error(err)
     })
 
-    axios.get(`https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=e4621b68dcd1fa1de4a66cfd0664dc28`)
+    axios.get(urlCredits)
     .then( res => {
       // console.log(res)
       let directors = []
@@ -92,7 +113,7 @@ class MovieDetail extends Component {
       console.log(err)
     })
 
-    axios.get(`https://api.themoviedb.org/3/movie/${movieId}/videos?api_key=e4621b68dcd1fa1de4a66cfd0664dc28&language=en-US`)
+    axios.get(urlVideos)
     .then( res => {
       // console.log(res)
       if (res.status === 200 && res.data) {
@@ -118,12 +139,37 @@ class MovieDetail extends Component {
       videoData 
     } = this.state
     // console.log({movieData})
+
+    const { parentComponent } = this.props.location.state
+
+    let release_date, budget, revenue, title
+
+    switch(parentComponent) {
+      case 'movies':
+        release_date = movieData.release_date
+        budget = movieData.budget
+        revenue = movieData.revenue
+        title = movieData.original_title
+        break
+
+      case 'tvshows':
+        release_date = movieData.first_air_date
+        budget = ''
+        revenue = ''
+        title = movieData.name
+        break
+
+      default:
+        release_date = ''
+        budget = ''
+        revenue = ''
+        title = ''
+    }
+
     if (loadDetail || loadCrew || loadVideo) return (
       <Loader />
     )
 
-    // backgroundImage: `radial-gradient(circle at 20% 50%, rgba(18.04%, 9.41%, 23.14%, 0.98) 0%, rgba(25.10%, 15.69%, 30.59%, 0.88) 100%), url(https://image.tmdb.org/t/p/w1400_and_h450_face${movieData.backdrop_path})`
-    // https://image.tmdb.org/t/p/w1400_and_h450_face/jOzrELAzFxtMx2I4uDGHOotdfsS.jpg
     return (
       <div className="md-wrapper">
 
@@ -138,8 +184,8 @@ class MovieDetail extends Component {
             >
             </div>
             <div className="md-header-content">
-              <h2>{movieData.original_title}</h2>
-              <p>{`(${(movieData.release_date).substr(0, 4)})`}</p>
+              <h2>{title}</h2>
+              <p>{`(${(release_date).substr(0, 4)})`}</p>
               <ul className="md-header-score">
                 <li>
                   <div>{`${movieData.vote_average * 10}%`}</div>
@@ -225,10 +271,20 @@ class MovieDetail extends Component {
               <p>{this.lngs[movieData.original_language]}</p>
               <h4>Runtime</h4>
               <p>{`${parseInt(movieData.runtime/60)}h ${movieData.runtime % 60}m`}</p>
-              <h4>Budget</h4>
-              <p>{`$${(movieData.budget).toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')}`}</p>
-              <h4>Revenue</h4>
-              <p>{`$${(movieData.revenue).toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')}`}</p>
+              {
+                budget !== '' && 
+                <Fragment>
+                  <h4>Budget</h4>
+                  <p>{`$${(budget).toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')}`}</p>
+                </Fragment>
+              }
+              {
+                revenue !== '' && 
+                <Fragment>
+                  <h4>Revenue</h4>
+                  <p>{`$${(movieData.revenue).toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')}`}</p>
+                </Fragment>
+              }
               <h4>Genres</h4>
               <div>
                 {

@@ -68,7 +68,7 @@ class Navigation extends React.Component {
         <div className={showHamburgerMenu ? "mobile-menu show-menu" : "mobile-menu"}>
           <ul>
             <li>
-              <Link onClick={() => this.handleHamburgerMenuClick('movies')}>Movies</Link>
+              <button onClick={() => this.handleHamburgerMenuClick('movies')}>Movies</button>
               <div className={showMoviesSubMenu ? "mm-movies-submenu show-movies-sub" : 'mm-movies-submenu'}>
                 <Link to="/movie/popular">Popular</Link>
                 <Link to="/">Top Rated</Link>
@@ -77,7 +77,7 @@ class Navigation extends React.Component {
               </div>
             </li>
             <li>
-              <Link onClick={() => this.handleHamburgerMenuClick('tvshows')}>Tv Shows</Link>
+              <button onClick={() => this.handleHamburgerMenuClick('tvshows')}>Tv Shows</button>
               <div className={showTvShowsSubMenu ? "mm-movies-submenu show-tvshows-sub" : 'mm-movies-submenu'}>
                 <Link to="/tvshows/popular">Popular</Link>
                 <Link to="/">Top Rated</Link>
@@ -85,7 +85,7 @@ class Navigation extends React.Component {
                 <Link to="/">Airing Today</Link>
               </div>
             </li>
-            <li><Link to="/">People</Link></li>
+            <li><button>People</button></li>
           </ul>
         </div>
 

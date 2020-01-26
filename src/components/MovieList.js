@@ -12,7 +12,8 @@ class MovieList extends Component {
   }
 
   render() {
-    const { dataMovies } = this.props
+    const { dataMovies, parentComponent } = this.props
+    // console.log(dataMovies)
 
     if (dataMovies.length === 0) return null
 
@@ -20,13 +21,32 @@ class MovieList extends Component {
       <div className="movie-popular-list">
         {
           dataMovies.map( (movie, idx) => {
+
+            let title, release_date
+
+            switch(parentComponent) {
+              case 'movies':
+                title =  movie.title
+                release_date = movie.release_date
+                break
+
+              case 'tvshows':
+                title = movie.name
+                release_date = movie.first_air_date
+                break
+
+              default:
+                title = ''
+            }
+
             return (
               <div key={movie.id} className="movie-popular-card">
                 <div className="card-image">
-                  <Link to={{
+                  <Link to={{ 
                     pathname: "/movie/detail",
                     state: {
-                      movieId: movie.id
+                      movieId: movie.id,
+                      parentComponent: parentComponent
                     }
                   }}>
                     <img src={`${this.imageEp}${movie.poster_path}`} alt={`${movie.title}`} />
@@ -47,9 +67,9 @@ class MovieList extends Component {
                         }}
                         className="card-content-title"
                       >
-                        {movie.title}
+                        {title}
                       </Link>
-                      <div className="movie-release-date">{moment(movie.release_date, 'YYYY-MM-DD').format('MMMM D, YYYY')}</div>
+                      <div className="movie-release-date">{moment(release_date, 'YYYY-MM-DD').format('MMMM D, YYYY')}</div>
                     </div>
                   </div>
                   <div className="movie-overview">{stringTruncate(movie.overview, 200)}</div>

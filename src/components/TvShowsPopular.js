@@ -76,7 +76,7 @@ class TvShowsPopular extends React.Component {
     return (
       <div className="movie-popular-container">
         <h2>Popular TV Shows</h2>
-        <MovieList dataMovies={dataMovies} />
+        <MovieList dataMovies={dataMovies} parentComponent={'tvshows'}/>
         <Pagination currentPage={currentPage} totalPages={totalPages} totalRecords={totalMovies} pageLimit={20} pageNeighbours={2} onPageChanged={this.onPageChanged} />
       </div>
     )
