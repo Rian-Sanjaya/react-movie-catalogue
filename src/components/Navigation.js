@@ -42,6 +42,19 @@ class Navigation extends React.Component {
   }
 
   handleHamburgerClick = () => {
+    if (this.state.showHamburgerMenu) {
+      document.body.style = ""
+      const topDiv = document.getElementById("top-div")
+      topDiv.removeAttribute("style")
+
+    } else {
+      document.body.style.overflow = "hidden"
+      document.body.style.paddingRight = "15px"
+
+      const topDiv = document.getElementById("top-div")
+      topDiv.setAttribute("style", "position: fixed; top: 0; left: 0; bottom: 0; right: 0; z-index: 1001")
+    }
+
     this.setState({
       showHamburgerMenu: !this.state.showHamburgerMenu,
     })

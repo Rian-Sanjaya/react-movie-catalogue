@@ -42,6 +42,7 @@ class App extends React.Component {
 
     return (
       <div className="main-wrapper">
+        <div id="top-div"></div>
 
         <div className="video-modal" style={{ display: videoDisp ? 'block' : 'none' }}>
           <div className="video-container">
