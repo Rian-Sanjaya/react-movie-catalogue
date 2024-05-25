@@ -188,7 +188,7 @@ class MovieDetail extends Component {
               <p>{`(${(release_date).substr(0, 4)})`}</p>
               <ul className="md-header-score">
                 <li>
-                  <div>{`${Math.round(movieData.vote_average * 10) / 100}%`}</div>
+                  <div>{`${Math.round((movieData.vote_average * 10) * 100) / 100}%`}</div>
                   <div><p>User<br/>Score</p></div>
                 </li>
                 <li className="play-video" onClick={() => this.props.onShowVideo(videoData[0].key)}><span className="glyphicon glyphicon-play"></span> Play Trailer</li>

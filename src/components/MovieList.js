@@ -55,7 +55,7 @@ class MovieList extends Component {
                 <div className="card-content">
                   <div className='card-content-header'>
                     <div className="movie-rate">
-                      {(Math.round(movie.vote_average * 10) / 100) + '%'}
+                      {(Math.round((movie.vote_average * 10) * 100) / 100) + '%'}
                     </div>
                     <div className="movie-title">
                       <Link 

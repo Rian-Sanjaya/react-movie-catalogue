@@ -1,4 +1,4 @@
-import React, { Component, Frangment, Fragment } from 'react'
+import React, { Component, Fragment } from 'react'
 import axios from 'axios'
 import '../styles/searchResult.css'
 import SearchResultList from './SearchResultList'

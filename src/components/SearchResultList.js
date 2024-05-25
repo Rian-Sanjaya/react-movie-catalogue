@@ -48,7 +48,7 @@ class SearchResultList extends Component {
                 <div className="search-result-content">
                   <div className='search-result-content-header'>
                     <div className="search-result-movie-rate">
-                      {(Math.round(movie.vote_average * 10) / 100) + '%'}
+                      {(Math.round((movie.vote_average * 10) * 100) / 100) + '%'}
                     </div>
                     <div className="search-result-movie-title">
                       <Link to={{
